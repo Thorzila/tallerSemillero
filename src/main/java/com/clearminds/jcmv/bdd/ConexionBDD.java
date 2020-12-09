@@ -9,11 +9,12 @@ import java.util.Properties;
 import com.clearminds.jcmv.excepciones.BDDException;
 
 public class ConexionBDD {
-
+	static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	public static String leerPropiedad(String leer) {
 		String propiedad = null;
 		try {
 			File file = new File("./conexion.properties");
+			System.out.println(file.getAbsolutePath());
 			Properties p = new Properties();
 			p.load(new FileReader(file));
 			propiedad = p.getProperty(leer);
@@ -29,8 +30,9 @@ public class ConexionBDD {
 		final String PASS = leerPropiedad("password");
 
 		Connection conn = null;
-
+		
 		try {
+			Class.forName(JDBC_DRIVER);
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 		} catch (Exception e) {
 			e.printStackTrace();
