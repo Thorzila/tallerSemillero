@@ -1,18 +1,18 @@
 package com.clearminds.jcmv.servicios;
 
-import java.sql.Connection;
-
 import com.clearminds.jcmv.bdd.ConexionBDD;
+import com.clearminds.jcmv.excepciones.BDDException;
+
+import java.sql.Connection;
 
 public class ServicioBase {
 	Connection conexion = null;
 	
-	public void abrirConexion(){
+	public void abrirConexion() throws BDDException{
 		conexion = ConexionBDD.obtenerConexion();			
 	}
 	
 	public void cerrarConexion(){
-		
 		try {
 			if (conexion!=null) {
 				conexion.close();
