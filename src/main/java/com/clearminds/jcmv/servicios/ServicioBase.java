@@ -7,20 +7,29 @@ import java.sql.Connection;
 
 public class ServicioBase {
 	Connection conexion = null;
-	
-	public void abrirConexion() throws BDDException{
-		conexion = ConexionBDD.obtenerConexion();			
+
+	public Connection getConexion() {
+		return conexion;
 	}
-	
-	public void cerrarConexion(){
+
+	public void setConexion(Connection conexion) {
+		this.conexion = conexion;
+	}
+
+	public void abrirConexion() throws BDDException {
+		conexion = ConexionBDD.obtenerConexion();
+	}
+
+	public void cerrarConexion() {
 		try {
-			if (conexion!=null) {
+			if (conexion != null) {
 				conexion.close();
-				System.out.println("Conexión cerrada");							
+				System.out.println("Conexión cerrada");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error al cerrar la conexión");
 		}
 	}
+
 }
