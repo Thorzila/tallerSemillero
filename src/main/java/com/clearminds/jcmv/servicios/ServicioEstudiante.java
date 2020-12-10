@@ -1,7 +1,8 @@
 package com.clearminds.jcmv.servicios;
 
-import java.sql.*;
 
+import java.sql.SQLException;
+import java.sql.Statement;
 import com.clearminds.jcmv.dtos.Estudiante;
 import com.clearminds.jcmv.excepciones.BDDException;
 
@@ -13,8 +14,8 @@ public class ServicioEstudiante extends ServicioBase {
 		System.out.println("Insertando estudiante" + estudiante);
 		try {
 			stmt = getConexion().createStatement();
-			String sql = "INSERT INTO estudiantes(nombre,apellido) "+
-						 "VALUES ('"+estudiante.getNombre()+"','"+estudiante.getApellido()+"')";
+			String sql = "INSERT INTO estudiantes(nombre,apellido,edad) "+
+						 "VALUES ('"+estudiante.getNombre()+"','"+estudiante.getApellido()+"','"+estudiante.getEdad()+"')";
 			System.out.println("Script: " + sql);
 			stmt.executeUpdate(sql);
 			cerrarConexion();
@@ -30,7 +31,7 @@ public class ServicioEstudiante extends ServicioBase {
 		System.out.println("Actualizando estudiante" + estudiante);
 		try {
 			stmt = getConexion().createStatement();
-			String sql = "UPDATE estudiantes SET nombre='"+estudiante.getNombre()+"', apellido='"+estudiante.getApellido()+"' WHERE id='"+estudiante.getId()+"'";
+			String sql = "UPDATE estudiantes SET nombre='"+estudiante.getNombre()+"', apellido='"+estudiante.getApellido()+"', edad='"+estudiante.getEdad()+"' WHERE id='"+estudiante.getId()+"'";
 			System.out.println("Script: " + sql);
 			stmt.executeUpdate(sql);
 			cerrarConexion();
